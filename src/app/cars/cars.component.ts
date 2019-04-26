@@ -20,4 +20,8 @@ export class CarsComponent {
     this.carName = '';
   }
 
+    setBigCarText(car: string) {
+    return car.length > 4 ? true : false;
+    }
+
 }
