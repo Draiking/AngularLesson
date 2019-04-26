@@ -9,6 +9,7 @@ export class CarsComponent {
 
   carName = '';
   addCarStatus = false;
+  cars = ['Ford', 'Audi', 'BMW'];
 
   constructor() {
   }
