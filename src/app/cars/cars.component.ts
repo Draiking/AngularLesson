@@ -8,12 +8,16 @@ import { Component } from '@angular/core';
 export class CarsComponent {
 
   addCarStatus = '';
+  inputText = '';
 
   constructor() {
   }
 
   addCar() {
     this.addCarStatus = 'Машина добавлена';
+  }
+  onKeyUp(value) {
+    this.inputText = value;
   }
 
 }
