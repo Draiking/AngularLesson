@@ -6,5 +6,10 @@
 
 <hr>
 
-<input type="text" class="form-control" (keyup.enter)="onKeyUp($event)" >
+<input type="text" class="form-control" (keyup.enter)="onKeyUp($event)" />
+
+<input type="text" class="form-control" name="name" [(ngModel)]="inputText"/>
+
 <p>{{inputText}}</p>
+
+
