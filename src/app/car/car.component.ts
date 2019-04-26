@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-car',
@@ -9,5 +9,6 @@ export class CarComponent {
 
   carName = 'Ford';
   carYear = '2015';
+
 
 }
