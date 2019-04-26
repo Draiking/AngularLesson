@@ -7,12 +7,13 @@ import { Component } from '@angular/core';
 })
 export class CarsComponent {
 
-  canAddCar = false;
+  addCarStatus = '';
 
   constructor() {
-    setTimeout(() => {
-        this.canAddCar = true;
-    },4000);
+  }
+
+  addCar() {
+    this.addCarStatus = 'Машина добавлена';
   }
 
 }
