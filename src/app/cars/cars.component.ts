@@ -16,6 +16,8 @@ export class CarsComponent {
 
   addCar() {
     this.addCarStatus = true;
+    this.cars.push(this.carName);
+    this.carName = '';
   }
 
 }
