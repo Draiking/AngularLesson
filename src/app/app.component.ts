@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  headerText = 'Создание своей директривы';
+    answers = [{
+        type: 'yes',
+        text: 'да'
+    }, {
+        type: 'no',
+        text: 'нет'
+    }];
 }
