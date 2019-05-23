@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgForm} from '@angular/forms';
 
 @Component({
@@ -7,9 +7,6 @@ import {NgForm} from '@angular/forms';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-    @ViewChild('form') form: NgForm;
-
     answers = [{
         type: 'yes',
         text: 'да'
@@ -18,7 +15,7 @@ export class AppComponent {
         text: 'нет'
     }];
 
-    submitForm() {
-        console.log('Submited!', this.form);
+    submitForm(form: NgForm) {
+        console.log('Submited!', form);
     }
 }
