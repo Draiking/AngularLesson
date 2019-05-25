@@ -1,24 +1,19 @@
 <div class="container">
-
     <div class="col-xs-8">
-        <form (ngSubmit)="submitForm(form)" #form="ngForm">
-            <div ngModelGroup="user" #user="ngModelGroup">
-                <div class="form-group" [ngClass]="{'has-error': email.invalid && email.touched}">
-                    <label>Email</label>
-                    <input type="text" class="form-control" ngModel name="email" required email #email="ngModel">
-                    <p *ngIf="email.invalid && email.touched">Введите корректный email</p>
-                    <button type="button" class="btn btn-primary" (click)="addRandEmail">случайнный email</button>
-                </div>
-                <div class="form-group" [ngClass]="{'has-error': password.invalid && password.touched}">
-                    <label>Password</label>
-                    <input type="password" class="form-control" ngModel name="password" required #password="ngModel">
-                    <p *ngIf="password.invalid && password.touched">Пароль короткий</p>
-                </div>
-                <p *ngIf="user.invalid && user.touched">Данные не введены</p>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label *ngIf="data">Email {{data.user.address}} </label>
+                <input type="text" class="form-control" formControlName="email">
+                <p></p>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}">
+                <label>Password</label>
+                <input type="password" class="form-control" formControlName="password">
+                <p *ngIf="form.get('password').invalid && form.get('password').touched">password not null</p>
             </div>
             <div class="form-group">
                 <label>Выберите Страницу</label>
-                <select class="form-control" [ngModel]="defaultCountry" name="country" required>
+                <select class="form-control" formControlName="country">
                     <option value="ru">Россия</option>
                     <option value="by">Белоруссия</option>
                     <option value="ua">Украина</option>
@@ -26,10 +21,19 @@
             </div>
             <div class="radio" *ngFor="let ans of answers">
                 <label>
-                    <input type="radio" [value]="ans.type" [ngModel]="defaultAnswer" name="answer" required> {{ans.text}}
+                    <input type="radio" name="answer" formControlName="answer" [value]="ans.type"> {{ans.text}}
                 </label>
             </div>
-            <button class="btn btn-success" type="submit" [disabled]="!form.valid">Save</button>
+            <button class="btn btn-success" type="submit" [disabled]="form.invalid" >Save</button>
         </form>
     </div>
+    <hr>
+    <p *ngIf="send">{{send}}</p>
 </div>
+<hr>
+<app-test></app-test>
+<br>
+<br>
+<br>
+<hr>
+<app-two *ngIf="data" [data]="data"></app-two>

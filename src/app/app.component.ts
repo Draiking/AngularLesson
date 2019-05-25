@@ -1,14 +1,17 @@
-import {Component, ViewChild} from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {DataService} from './data.service';
+import {IData} from './data.model';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
 
-    @ViewChild('form') form: NgForm;
 
     answers = [{
         type: 'yes',
@@ -18,18 +21,47 @@ export class AppComponent {
         text: 'нет'
     }];
 
-    defaultAnswer = 'no';
-    defaultCountry = 'ru';
+    form: FormGroup;
 
+    data: IData;
 
-    /*addRandEmail() {
-        const randEmail = 'test@mail.ru';
-        this.form.patchValue({
-            user: {email: randEmail}
+    send: string;
+    // отписка от подписок
+    private unsubscribeAll: Subject<any> = new Subject();
+
+    constructor(private dataService: DataService) {
+        this.dataService.send
+        // отписка от подписок
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe((send) => {
+            this.send = send;
         });
-    }*/
 
-    submitForm() {
-        console.log('Submited!', this.form);
     }
+
+    ngOnInit() {
+        this.form = new FormGroup({
+            email: new FormControl('', [Validators.required, Validators.email]),
+            password: new FormControl('', Validators.required),
+            country: new FormControl('ru'),
+            answer: new FormControl('no'),
+        });
+        this.patchForm();
+    }
+
+    async patchForm() {
+        this.data = await this.dataService.getMyData();
+        console.log(this.data);
+        this.form.patchValue({email: this.data.email});
+        this.form.patchValue({password: this.data.password});
+    }
+
+    ngOnDestroy(): void {
+        // Unsubscribe from all subscriptions
+        // отписка от подписок
+        this.unsubscribeAll.next();
+        this.unsubscribeAll.complete();
+    }
+
+
 }

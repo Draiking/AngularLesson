@@ -1,0 +1,24 @@
+{
+  "name": "Gena",
+  "age": "23",
+  "email": "test@mail.ru",
+  "country": "Россия",
+  "password": "sadf",
+  "user": {
+    "address": "USA",
+    "ticket": "123",
+    "seat": "11"
+  },
+  "countrys": [
+     {
+      "KG": {
+        "code": "996"
+      }
+    },
+    {
+      "RU": {
+        "code": "7"
+      }
+    }
+  ]
+}

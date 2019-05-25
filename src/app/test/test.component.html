@@ -1,0 +1,9 @@
+<pre>
+  {{data| json}}
+</pre>
+
+<p *ngIf="data">
+  {{data.password}}
+</p>
+
+<button class="btn btn-primary" (click)="send()">send</button>
