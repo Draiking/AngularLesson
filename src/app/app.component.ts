@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 
 @Component({
@@ -7,6 +7,9 @@ import {NgForm} from '@angular/forms';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+    @ViewChild('form') form: NgForm;
+
     answers = [{
         type: 'yes',
         text: 'да'
@@ -18,7 +21,15 @@ export class AppComponent {
     defaultAnswer = 'no';
     defaultCountry = 'ru';
 
-    submitForm(form: NgForm) {
-        console.log('Submited!', form);
+
+    /*addRandEmail() {
+        const randEmail = 'test@mail.ru';
+        this.form.patchValue({
+            user: {email: randEmail}
+        });
+    }*/
+
+    submitForm() {
+        console.log('Submited!', this.form);
     }
 }
