@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { TestComponent } from './test/test.component';
 import { TwoComponent } from './two/two.component';
+import { ThreeComponent } from './three/three.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TwoComponent } from './two/two.component';
         AppComponent,
         BackgroundDirective,
         TestComponent,
-        TwoComponent
+        TwoComponent,
+        ThreeComponent
     ],
     imports: [
         BrowserModule,

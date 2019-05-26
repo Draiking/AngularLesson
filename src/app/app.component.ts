@@ -4,6 +4,7 @@ import {DataService} from './data.service';
 import {IData} from './data.model';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {AppService} from './app.service';
 
 @Component({
     selector: 'app-root',
@@ -29,7 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // отписка от подписок
     private unsubscribeAll: Subject<any> = new Subject();
 
-    constructor(private dataService: DataService) {
+    constructor(private dataService: DataService, private appService: AppService) {
         this.dataService.send
         // отписка от подписок
             .pipe(takeUntil(this.unsubscribeAll))

@@ -10,8 +10,9 @@ import {Subject} from 'rxjs';
 export class DataService {
 
     myData: IData;
-    sender = new Subject();
-    send = new Subject();
+    sender: Subject<IData> = new Subject();
+    send: Subject<string> = new Subject();
+    sendboolean: Subject<boolean> = new Subject();
 
     constructor(private http: HttpClient) {
     }
